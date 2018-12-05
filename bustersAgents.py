@@ -177,9 +177,7 @@ class GreedyBustersAgent(BustersAgent):
             if min>self.distancer.getDistance(pacmanPosition, ghostPos):
                 min=self.distancer.getDistance(pacmanPosition, ghostPos)
                 closeGhost=ghostPos
-        for action in legal:
-            successorPosition = Actions.getSuccessor(pacmanPosition, action)
-            if self.distancer.getDistance(successorPosition, closeGhost)< self.distancer.getDistance(pacmanPosition, closeGhost):
-                return action
 
+        actions= [action for action in legal if  self.distancer.getDistance(Actions.getSuccessor(pacmanPosition, action), closeGhost)< self.distancer.getDistance(pacmanPosition, closeGhost)]
+        return actions[0]
 
